@@ -1,0 +1,43 @@
+- route:
+    id: http-route
+    nodePrefixId: route-aa4
+    from:
+      id: http-get-route
+      description: Expose test path - services/integrations/test-camel-route
+      uri: platform-http
+      parameters:
+        path: test-camel-route
+        httpMethodRestrict: GET
+      steps:
+        - to:
+            id: to-f9e8
+            description: Metric - count executions
+            uri: micrometer
+            parameters:
+              metricsType: counter
+              metricsName: camel_test_route_executions
+        - setBody:
+            id: setBody-27e4
+            description: Set test body
+            expression:
+              simple:
+                id: simple-c2f2
+                expression: This is a test body
+        - to:
+            id: to-f9b5
+            description: Call TS code
+            uri: dirigible-java-script
+            parameters:
+              javaScriptPath: open-telemetry-sample-project/camel/handler.ts
+        - to:
+            id: to-c3df
+            description: Call econd-handler.ts
+            uri: dirigible-java-script
+            parameters:
+              javaScriptPath: open-telemetry-sample-project/camel/second-handler.ts
+        - log:
+            id: log-aba8
+            description: Log route executed
+            message: Http route executed
+            loggingLevel: INFO
+            logName: CamelLogger

@@ -1,0 +1,23 @@
+- route:
+    id: cron-test-route
+    description: A test cron route
+    nodePrefixId: route-e81
+    from:
+      id: trigger-execution
+      uri: cron
+      parameters:
+        schedule: 0/20 * * ? * *
+        name: TriggerExecution
+      steps:
+        - to:
+            id: call-ts-code
+            description: Call TS code
+            uri: dirigible-java-script
+            parameters:
+              javaScriptPath: open-telemetry-sample-project/camel/handler.ts
+        - to:
+            id: to-a8cc
+            description: Call second-handler.ts
+            uri: dirigible-java-script
+            parameters:
+              javaScriptPath: open-telemetry-sample-project/camel/second-handler.ts

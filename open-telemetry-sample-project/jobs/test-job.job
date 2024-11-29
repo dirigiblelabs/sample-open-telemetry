@@ -1,0 +1,7 @@
+{
+    "expression": "0/30 * * * * ?",
+    "group": "defined",
+    "handler": "open-telemetry-sample-project/jobs/test-job-handler.ts",
+    "description": "A test job",
+    "parameters": []
+}
