@@ -25,7 +25,7 @@
                 expression: This is a test body
         - to:
             id: to-f9b5
-            description: Call TS code
+            description: Call external API using handler.ts
             uri: dirigible-java-script
             parameters:
               javaScriptPath: open-telemetry-sample-project/camel/handler.ts

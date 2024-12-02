@@ -11,7 +11,7 @@
       steps:
         - to:
             id: call-ts-code
-            description: Call TS code
+            description: Call external API using handler.ts
             uri: dirigible-java-script
             parameters:
               javaScriptPath: open-telemetry-sample-project/camel/handler.ts
